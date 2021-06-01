@@ -1,16 +1,24 @@
-import {getOrders, getCrusts} from "./database.js"
+import {getOrders, getCrusts, getToppings} from "./database.js"
 
 const buildOrderListItem = (order) => {
   //order has the crustId
   const crusts = getCrusts()
+  const toppings = getToppings()
+
   const foundCrust = crusts.find(
     (crust) => {
       return crust.id === order.crustId
     }
   )
 
-  const totalCost = foundCrust.price
-  return `<li> Order #${order.id} will contain a ${foundCrust.crustType} crust and cost $${totalCost}.</li>`
+  const foundTopping = toppings.find(
+    (topping) => {
+      return topping.id === order.toppingId
+    }
+  )
+
+  const totalCost = foundCrust.price + foundTopping.price
+  return `<li> Order #${order.id} will contain a ${foundCrust.crustType} crust, ${foundTopping.toppingType} topping, and cost $${totalCost}.</li>`
 }
 
 export const Orders = () => {

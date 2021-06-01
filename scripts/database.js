@@ -40,6 +40,14 @@ export const getOrders = () => {
   return database.orders.map(order => ({...order}))
 }
 
+export const getToppings = () => {
+  return database.toppings.map(topping => ({...topping}))
+}
+
+export const setTopping = (id) => {
+  database.orderBuilder.toppingId = id
+}
+
 export const addCustomerOrder = () => {
   const newOrder = {...database.orderBuilder}
 

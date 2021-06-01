@@ -1,8 +1,8 @@
 import {Crust} from "./Crust.js"
 import {Orders} from "./Orders.js"
 import {addCustomerOrder} from "./database.js"
+import {Topping} from "./Topping.js"
 
-const crusts = Crust()
  document.addEventListener(
    "click",
    (event) => {
@@ -18,10 +18,11 @@ export const PetesPizza = () => {
     <article class="pizza">
       <section class="crust_choices">
         <h2>Crusts</h2>
-        ${crusts}
+        ${Crust()}
       </section>
       <section class="topping_choices">
         <h2>Toppings</h2>
+        ${Topping()}
       </section>
       <section class="size_choices">
         <h2>Size</h2>
