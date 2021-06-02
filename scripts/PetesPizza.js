@@ -2,6 +2,7 @@ import {Crust} from "./Crust.js"
 import {Orders} from "./Orders.js"
 import {addCustomerOrder} from "./database.js"
 import {Topping} from "./Topping.js"
+import {Sizes} from "./Size.js"
 
  document.addEventListener(
    "click",
@@ -26,6 +27,7 @@ export const PetesPizza = () => {
       </section>
       <section class="size_choices">
         <h2>Size</h2>
+        ${Sizes()}
       </section>
       <section>
         <button id="orderPizza">Create Pizza</button>

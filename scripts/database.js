@@ -10,12 +10,13 @@ const database = {
     {id: 2, toppingType: "Bacon", price: 1.00},
     {id: 3, toppingType: "Sausage", price: 1.00},
     {id: 4, toppingType: "Mushrooms", price: 0.50},
-    {id: 5, toppingType: "Onions", price: 0.50}
+    {id: 5, toppingType: "Onions", price: 0.50},
+    {id: 6, toppingType: "Anchovies", price: 0.50},
   ],
   sizes: [
-    {id: 1, size: "Small", price: 10.00},
-    {id: 2, size: "Medium", price: 15.00 },
-    {id: 3, size: "Large", price: 20.00}
+    {id: 123092309, size: "Small", price: 10.00},
+    {id: 22323, size: "Medium", price: 15.00 },
+    {id: 32838292938, size: "Large", price: 20.00}
   ],
   orders: [
     {
@@ -46,6 +47,14 @@ export const getToppings = () => {
 
 export const setTopping = (id) => {
   database.orderBuilder.toppingId = id
+}
+
+export const getSizes = () => {
+  return database.sizes.map(size => ({...size}))
+}
+
+export const setSize = sizzleId => {
+  database.orderBuilder.sizeId = sizzleId
 }
 
 export const addCustomerOrder = () => {
