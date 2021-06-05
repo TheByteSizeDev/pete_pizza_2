@@ -1,9 +1,15 @@
-import {getOrders, getCrusts, getToppings} from "./database.js"
+import {
+  getOrders,
+  getCrusts,
+  getToppings,
+  getSizes
+} from "./database.js"
 
 const buildOrderListItem = (order) => {
-  //order has the crustId
+  //order has the crustId, toppingId, and sizeId
   const crusts = getCrusts()
   const toppings = getToppings()
+  const sizes = getSizes()
 
   const foundCrust = crusts.find(
     (crust) => {
@@ -17,8 +23,22 @@ const buildOrderListItem = (order) => {
     }
   )
 
-  const totalCost = foundCrust.price + foundTopping.price
-  return `<li> Order #${order.id} will contain a ${foundCrust.crustType} crust, ${foundTopping.toppingType} topping, and cost $${totalCost}.</li>`
+  const foundSize = sizes.find(size => size.id === order.sizeId)
+
+  if (foundCrust && foundSize && foundTopping) {
+    const totalCost = foundCrust.price + foundTopping.price + foundSize.price
+
+    return `
+      <li> Order #${order.id} will contain a
+      ${foundCrust.crustType} crust,
+      is a ${foundSize.size} size,
+      ${foundTopping.toppingType} topping, and
+      cost $${totalCost}.
+      </li>
+    `
+  } else {
+    return '<li>Something is missing from this order!</li>'
+  }
 }
 
 export const Orders = () => {
